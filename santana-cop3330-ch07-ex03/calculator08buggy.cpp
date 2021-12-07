@@ -72,7 +72,7 @@ Token Token_stream::get()
 	return Token(number, val);
 	}
 	default:
-		if (isalpha(ch)) 
+		if (isalpha(ch) || ch == '_')  // allow _'s in names
     {
 			string s;
 			s += ch;
@@ -83,7 +83,7 @@ Token Token_stream::get()
 			return Token(name, s);
 		}
 		error("Bad token");
-    return 0; // was not returning anything
+    return Token(' '); // was not returning anything
 	}
 }
 
